@@ -1,0 +1,19 @@
+{
+    "manifest_version": 3,
+    "name": "Amazon Review Summarizer",
+    "version": "1.0",
+    "description": "Summarizes (using Gen AI) reviews for Amazon products and highlights salient details and statistics",
+    "icons": {
+        "16": "images/amazon.png",
+        "32": "images/amazon.png",
+        "48": "images/amazon.png",
+        "128": "images/amazon.png"
+    },
+    "content_scripts": [
+    {
+        "js": ["lib/jquery-3.7.0.js", "scripts/content.js"],
+        "matches": ["https://www.amazon.com/*"]
+    }
+    ],
+    "host_permissions": ["https://*/"]
+}
