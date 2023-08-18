@@ -19,6 +19,7 @@ function scrape() {
 
 
 console.log(scrape());
+$.get(
 chrome.storage.local.get("api_key").then(function(data) {
     console.log(data['api_key'])
 });
