@@ -27,7 +27,7 @@ comm==0.1.4
 contourpy==1.1.0
 cycler==0.11.0
 dataclasses-json==0.5.7
-debugpy==1.6.8
+debugpy
 decorator==5.1.1
 defusedxml==0.7.1
 docker-pycreds==0.4.0
