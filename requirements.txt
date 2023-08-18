@@ -91,9 +91,7 @@ openai==0.27.8
 openapi-schema-pydantic==1.2.4
 openpyxl==3.1.2
 overrides==7.3.1
-paapi5-python-sdk==1.1.0
-paapi5-python-sdk==1.1.0
-paapi5-python-sdk==1.1.0
+paapi5-python-sdk
 packaging==23.1
 pandas==2.0.3
 pandas-stubs==2.0.2.230605
