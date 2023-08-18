@@ -3,16 +3,14 @@ This project is a chrome extension that summarizes (using Gen AI) reviews for Am
 
 # TODO
 * Basic MVP
-    * Resolve issue with some urls that contain "?" instead of "/" after product ASIN
-    * Get Langchain working in JS
-        * I have a functional demo in this project for langchain functionality in python, so hopefully replicating in JS will not be impossible
+    * Create flask server Langchain implementation to query with information from extension
     * Summarize reviews and show interesting metrics / conclusions in some format
    
 * Refinements
+    * Create system for specifying OpenAI API key
     * Determine a better solution for getting around CORS issue
-        * At least in chrome, getting content from different web pages violates CORS policies. Currently, I am solving this by opening a fresh browser with web security disabled
-           * ```open -na Google\ Chrome --args --user-data-dir=/tmp/temporary-chrome-profile-dir --disable-web-security```
-        * Obviously, this is not a reasonable permanent solution. Currently, the most reasonable solution to pursue in the future seems to be routing traffic through a proxy server. There used to be just such a free resource (https://cors-anywhere.herokuapp.com/), but it seems that is not viable anymore. Perhaps another similar solution exists
+        * It appears [CORS Unblock](https://chrome.google.com/webstore/detail/cors-unblock/lfhmikememgdcahcdlaciloancbhjino) was able to get around this issue, but even after uninstalling the extension I am still not having CORS issues. Not sure if something was resolved there or if some permanent CORS setting was enabled by the extension. Will wait and see. 
     * Investigate array capping
         * For some reason, it appears that the reviews array can't contain more than 100 elements. Being pretty unfamiliar with JS, I am not sure what the issue is unfortunately. As openai charges by token, it is likely just fine that I can't include more than 100 reviews, but I would like to figure this out for personal benefit
     * Expand capability / displayed information
+        * Have chatbot interface that user can query with questions about the product
