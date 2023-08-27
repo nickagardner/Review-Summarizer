@@ -36,9 +36,9 @@ async function postJSON() {
     const response = await fetch("https://review-summarizer-4e7213007e44.herokuapp.com/summarize", {
       method: "POST", // or 'PUT'
       body: JSON.stringify(data),
-      // headers: {
-      // 'Authorization': `${key}`,
-      // }
+      headers: {
+      'Authorization': 'test_auth',
+      }
     });
 
     const result = await response.json();
