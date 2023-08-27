@@ -62,7 +62,7 @@ def _summarize(req_info):
     
     neg_themes = chain.run(req_info[1:])
 
-    pos_themes.extend(neg_themes)
+    themes.extend(neg_themes)
 
     template = """You are a helpful assistant who counts how many times themes appear in a list of reviews. 
     A user will pass in a list of reviews, and a list of 10 themes. For each review, you will determine whether each theme is present. 
