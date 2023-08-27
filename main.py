@@ -85,4 +85,4 @@ def _summarize(req_info):
     'themes': themes
     })
 
-    return (themes, counts)
+    return themes, counts
