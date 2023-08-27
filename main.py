@@ -13,10 +13,10 @@ app = FastAPI()
 @app.post("/summarize")
 async def summarize(info : Request):
     req_info = await info.json()
-    output = _summarize(req_info)
+    themes, counts = _summarize(req_info)
     return {
         "status" : "SUCCESS",
-        "data" : output,
+        "data" : [themes, counts],
     }
 
 
@@ -30,7 +30,7 @@ def _summarize(req_info):
             return text.strip().split(", ")
     
     template = """You are a helpful assistant who summarizes product reviews. 
-    A user will pass in a list of reviews, and you should generate 5 common themes present in the reviews as a comma separated list.
+    A user will pass in a list of reviews, and you should generate 5 common positive themes and 5 common negative themes present in the reviews as a comma separated list.
     ONLY return a comma separated list, and nothing more."""
     system_message_prompt = SystemMessagePromptTemplate.from_template(template)
     human_template = "{text}"
@@ -42,4 +42,24 @@ def _summarize(req_info):
         prompt=chat_prompt,
         output_parser=CommaSeparatedListOutputParser()
     )
-    return chain.run(req_info[1:])
+    
+    themes = chain.run(req_info[1:])
+
+    template = """You are a helpful assistant who counts how many times themes appear in a list of reviews. 
+    A user will pass in a list of reviews, and a list of 10 themes. For each review, you will determine whether each theme is present. 
+    You will return a list of counts where each count corresponds with the number of times each theme appeared in the reviews. 
+    ONLY return a comma separated list, and nothing more."""
+    system_message_prompt = SystemMessagePromptTemplate.from_template(template)
+    human_template = "{text}"
+    human_message_prompt = HumanMessagePromptTemplate.from_template(human_template)
+    
+    chat_prompt = ChatPromptTemplate.from_messages([system_message_prompt, human_message_prompt])
+    chain = LLMChain(
+        llm=ChatOpenAI(openai_api_key=req_info[0]),
+        prompt=chat_prompt,
+        output_parser=CommaSeparatedListOutputParser()
+    )
+
+    counts = chain.run(req_info[1:])
+
+    return (themes, counts)
