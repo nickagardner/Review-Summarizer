@@ -20,7 +20,7 @@ async def summarize(info : Request):
     }
 
 
-def _summarize(req_info)
+def _summarize(req_info):
     class CommaSeparatedListOutputParser(BaseOutputParser):
         """Parse the output of an LLM call to a comma-separated list."""
     
