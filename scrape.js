@@ -14,10 +14,9 @@ async function scrape() {
         });
     };
 
-    // let key = null
-    // chrome.storage.local.get("api_key").then(function(data) {
-    //     key = data['api_key']
-    // });
+    chrome.storage.local.get("api_key").then(function(data) {
+        reviews.push(data['api_key'])
+    });
 
     await wait();
     
@@ -31,14 +30,11 @@ function wait() {
 }
 
 async function postJSON() {
-  var data = await scrape()
-  try {
+    var reviews = await scrape()
+    try {
     const response = await fetch("https://review-summarizer-4e7213007e44.herokuapp.com/summarize", {
-      method: "POST", // or 'PUT'
-      body: JSON.stringify(data),
-      headers: {
-      'Authorization': 'test_auth',
-      }
+        method: "POST",
+        body: JSON.stringify(reviews),
     });
 
     const result = await response.json();
