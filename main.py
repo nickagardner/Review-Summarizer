@@ -8,5 +8,5 @@ async def summarize(info : Request):
     return {
         "status" : "SUCCESS",
         "data" : req_info,
-        "token": token
+        # "token": token
     }
