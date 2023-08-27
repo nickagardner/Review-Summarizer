@@ -44,9 +44,7 @@ def _summarize(req_info):
         output_parser=CommaSeparatedListOutputParser()
     )
     
-    pos_themes = chain.run(req_info[1:])
-
-    print(pos_themes)
+    themes = chain.run(req_info[1:])
 
     template = """You are a helpful assistant who summarizes product reviews. 
     A user will pass in a list of reviews, and you should generate 5 common negative sentiments expressed in those reviews as a comma separated list.
@@ -64,11 +62,7 @@ def _summarize(req_info):
     
     neg_themes = chain.run(req_info[1:])
 
-    print(neg_themes)
-
-    themes = pos_themes.extend(neg_themes)
-
-    print(themes)
+    pos_themes.extend(neg_themes)
 
     template = """You are a helpful assistant who counts how many times themes appear in a list of reviews. 
     A user will pass in a list of reviews, and a list of 10 themes. For each review, you will determine whether each theme is present. 
@@ -91,7 +85,5 @@ def _summarize(req_info):
     'reviews': req_info[1:],
     'themes': themes
     })
-
-    print(themes, counts)
 
     return themes, counts
