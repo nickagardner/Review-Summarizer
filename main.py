@@ -38,8 +38,8 @@ def _summarize(req_info)
     
     chat_prompt = ChatPromptTemplate.from_messages([system_message_prompt, human_message_prompt])
     chain = LLMChain(
-        llm=ChatOpenAI(),
+        llm=ChatOpenAI(openai_api_key=req_info[0]),
         prompt=chat_prompt,
         output_parser=CommaSeparatedListOutputParser()
     )
-    return chain.run(req_info)
+    return chain.run(req_info[1:])
