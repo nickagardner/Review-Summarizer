@@ -81,7 +81,7 @@ def _summarize(req_info):
     )
 
     counts = chain.run({
-    'reviews': reviews,
+    'reviews': req_info[1:],
     'themes': themes
     })
 
