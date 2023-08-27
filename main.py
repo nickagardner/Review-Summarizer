@@ -64,6 +64,8 @@ def _summarize(req_info):
 
     themes = pos_themes.extend(neg_themes)
 
+    print(themes)
+
     template = """You are a helpful assistant who counts how many times themes appear in a list of reviews. 
     A user will pass in a list of reviews, and a list of 10 themes. For each review, you will determine whether each theme is present. 
     You will return a list of counts where each count corresponds with the number of times each theme appeared in the reviews. 
@@ -85,5 +87,7 @@ def _summarize(req_info):
     'reviews': req_info[1:],
     'themes': themes
     })
+
+    print(themes, counts)
 
     return themes, counts
