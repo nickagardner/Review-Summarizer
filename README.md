@@ -3,7 +3,7 @@ This project is a chrome extension that summarizes (using Gen AI) reviews for Am
 
 # TODO
 * Basic MVP
-    * Create flask server Langchain implementation to query with information from extension
+    * Create fastapi Langchain implementation to query with information from extension
     * Summarize reviews and show interesting metrics / conclusions in some format
    
 * Refinements

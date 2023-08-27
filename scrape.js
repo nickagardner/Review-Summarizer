@@ -27,10 +27,19 @@ function wait() {
 
 async function postJSON() {
   var data = await scrape()
+    
+  chrome.storage.local.get("api_key").then(function(data) {
+    let key = data['api_key']
+  });
+    
   try {
     const response = await fetch("https://review-summarizer-4e7213007e44.herokuapp.com/summarize", {
       method: "POST", // or 'PUT'
       body: JSON.stringify(data),
+      headers: {
+      'Authorization': `${key}`,
+      }
+  },
     });
 
     const result = await response.json();
@@ -41,8 +50,3 @@ async function postJSON() {
 }
 
 postJSON();
-
-
-// chrome.storage.local.get("api_key").then(function(data) {
-//     console.log(data['api_key'])
-// });
