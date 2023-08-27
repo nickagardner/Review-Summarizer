@@ -46,6 +46,8 @@ def _summarize(req_info):
     
     pos_themes = chain.run(req_info[1:])
 
+    print(pos_themes)
+
     template = """You are a helpful assistant who summarizes product reviews. 
     A user will pass in a list of reviews, and you should generate 5 common negative sentiments expressed in those reviews as a comma separated list.
     ONLY return a comma separated list, and nothing more."""
@@ -61,6 +63,8 @@ def _summarize(req_info):
     )
     
     neg_themes = chain.run(req_info[1:])
+
+    print(neg_themes)
 
     themes = pos_themes.extend(neg_themes)
 
