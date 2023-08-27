@@ -16,7 +16,8 @@ async def summarize(info : Request):
     themes, counts = _summarize(req_info)
     return {
         "status" : "SUCCESS",
-        "data" : [themes, counts],
+        "data" : {"themes": themes, 
+                  "counts": counts},
     }
 
 
