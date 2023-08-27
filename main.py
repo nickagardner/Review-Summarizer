@@ -30,7 +30,7 @@ def _summarize(req_info):
             return text.strip().split(", ")
     
     template = """You are a helpful assistant who summarizes product reviews. 
-    A user will pass in a list of reviews, and you should generate 5 common positive themes as a comma separated list.
+    A user will pass in a list of reviews, and you should generate 5 common positive sentiments expressed in those reviews as a comma separated list.
     ONLY return a comma separated list, and nothing more."""
     system_message_prompt = SystemMessagePromptTemplate.from_template(template)
     human_template = "{text}"
@@ -46,7 +46,7 @@ def _summarize(req_info):
     pos_themes = chain.run(req_info[1:])
 
     template = """You are a helpful assistant who summarizes product reviews. 
-    A user will pass in a list of reviews, and you should generate 5 common negative themes as a comma separated list.
+    A user will pass in a list of reviews, and you should generate 5 common negative sentiments expressed in those reviews as a comma separated list.
     ONLY return a comma separated list, and nothing more."""
     system_message_prompt = SystemMessagePromptTemplate.from_template(template)
     human_template = "{text}"
@@ -69,7 +69,7 @@ def _summarize(req_info):
     ONLY return a comma separated list, and nothing more."""
     system_message_prompt = SystemMessagePromptTemplate.from_template(template)
     human_template = """Reviews: {reviews}
-    Themes: """
+    Themes: {themes}"""
     human_message_prompt = HumanMessagePromptTemplate.from_template(input_variables=["reviews", "themes"],
                                                                     template=human_template)
     
