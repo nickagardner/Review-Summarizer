@@ -1,0 +1,29 @@
+html
+{
+    width: 1000px; /* max: 1000px */
+    height: 750px; /* max: 750px */
+}
+body {
+    width: 20rem;
+  }
+  
+  ul {
+    list-style-type: none;
+    padding-inline-start: 0;
+    margin: 1rem 0;
+  }
+  
+  li {
+    padding: 0.25rem;
+  }
+  li:nth-child(odd) {
+    background: #80808030;
+  }
+  li:nth-child(even) {
+    background: #ffffff;
+  }
+  
+  h3,
+  p {
+    margin: 0;
+  }

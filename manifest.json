@@ -9,13 +9,11 @@
         "48": "images/amazon.png",
         "128": "images/amazon.png"
     },
-    "content_scripts": [
-    {
-        "js": ["lib/jquery-3.7.0.js", "scrape.js"],
-        "matches": ["https://www.amazon.com/*"]
-    }],
     "host_permissions": ["https://*/"],
     "options_page": "options.html",
+    "action": {
+        "default_popup": "popup.html"
+    },
     "permissions": [
     "storage"
     ]
